@@ -11,6 +11,7 @@ import TextLabel from "../../shared/ui-components/TextLabel/TextLabel";
 import TextInput from "../../shared/ui-components/TextInput/TextInput";
 import CustomButton from "../../shared/ui-components/CustomButton/CustomButton";
 import { ButtonType } from "../../shared/common/Constants";
+import { useState } from "react";
 
 const Login = () => {
   const { control, handleSubmit } = useForm<ISignUpFormData>({
@@ -19,7 +20,15 @@ const Login = () => {
       Password: "",
     },
   });
-  const onSubmit = (details: ISignUpFormData) => {};
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const onSubmit = (details: ISignUpFormData) => {
+    try {
+      setIsLoading(true);
+    } catch (e) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <MainContainer>
@@ -58,6 +67,7 @@ const Login = () => {
         </PasswordContainer>
         <StyledView style={{ marginTop: 16 }}>
           <CustomButton
+            isLoading={isLoading}
             type={ButtonType.Primary}
             name={"Submit"}
             onPress={handleSubmit(onSubmit)}

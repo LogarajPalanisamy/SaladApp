@@ -1,12 +1,13 @@
-import { Button } from "react-native";
 import { ButtonLabel, StyledButton } from "./CustomButton.styles";
-import TextLabel from "../TextLabel/TextLabel";
 import { ICustomButtonProps } from "./CustomButton.model";
+import { ActivityIndicator } from "react-native";
 const CustomButton = (props: ICustomButtonProps) => {
-  const { name, onPress, type } = props;
+  const { name, onPress, type, isLoading } = props;
   return (
     <StyledButton onPress={onPress} type={type}>
-      <ButtonLabel type={type}>{name}</ButtonLabel>
+      <ButtonLabel type={type}>
+        {isLoading ? <ActivityIndicator></ActivityIndicator> : name}
+      </ButtonLabel>
     </StyledButton>
   );
 };

@@ -4,6 +4,7 @@ export interface ICustomButtonProps {
   name: string;
   onPress?: any;
   type: ButtonType;
+  isLoading: boolean;
 }
 
 export interface IStyledButtonProps {
